@@ -53,10 +53,10 @@ class Vodacash(object):
         result = requests.post(
             self.C2B_URL,
             {
-                "token": self.token,
-                "CustomerMSISDN": customer_msisdn,
                 "Amount": amount,
-                "Date": strdate(datetime.utcnow())
+                "CustomerMSISDN": customer_msisdn,
+                "Date": strdate(datetime.now()),
+                "token": str(self.token),
             }
         ).content
         result = json.loads(result)
