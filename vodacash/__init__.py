@@ -1,5 +1,6 @@
 from datetime import datetime
 import requests
+import json
 from lxml import etree
 
 CallbackResponse = """
@@ -45,6 +46,7 @@ class Vodacash(object):
     def authenticate(self):
         result = requests.post(
             self.LOGIN_URL, {"Username": self.Username, "Password": self.Password}).content
+        result = json.loads(result)
         self.token = result["token"]
 
     def c2b(self, customer_msisdn, amount):
@@ -59,4 +61,5 @@ class Vodacash(object):
                 "CallbackURL": self.callback_url,
             }
         ).content
+        result = json.loads(result)
         return result
