@@ -45,7 +45,7 @@ class Vodacash(object):
 
     def authenticate(self):
         result = requests.post(
-            self.LOGIN_URL, {"Username": self.Username, "Password": self.Password}).content
+            self.LOGIN_URL, {"Username": self.Username, "Password": self.Password}).json
         result = json.loads(result)
         self.token = result["token"]
 
@@ -58,6 +58,6 @@ class Vodacash(object):
                 # "Date": strdate(datetime.now()),
                 "token": str(self.token),
             }
-        ).content
+        ).json
         result = json.loads(result)
         return result
