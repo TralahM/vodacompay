@@ -56,7 +56,7 @@ class Vodacash(object):
                 "token": self.token,
                 "CustomerMSISDN": customer_msisdn,
                 "Amount": amount,
-                "Date": strdate(datetime.utcnow()),
+                "Date": strdate(datetime.utcnow())
                 # "CallbackChannel": self.callback_channel,
                 # "CallbackURL": self.callback_url,
             }
