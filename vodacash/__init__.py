@@ -44,12 +44,14 @@ class Vodacash(object):
         self.authenticate()
 
     def authenticate(self):
+        headers = {"Content-Type": "application/json"}
         result = requests.post(
-            self.LOGIN_URL, {"Username": self.Username, "Password": self.Password}).content
+            self.LOGIN_URL, {"Username": self.Username, "Password": self.Password}, headers=headers).content
         result = json.loads(result)
         self.token = result["token"]
 
     def c2b(self, customer_msisdn, amount):
+        headers = {"Content-Type": "application/json"}
         result = requests.post(
             self.C2B_URL,
             {
@@ -57,7 +59,8 @@ class Vodacash(object):
                 "CustomerMSISDN": customer_msisdn,
                 "Date": strdate(datetime.now()),
                 "token": str(self.token),
-            }
+            },
+            headers=headers
         ).content
         result = json.loads(result)
         return result
