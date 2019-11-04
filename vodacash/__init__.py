@@ -47,7 +47,7 @@ def parse_async_result(content):
 
 
 class Vodacash(object):
-    def __init__(self, username, password, callback_url):
+    def __init__(self, username, password, callback_url, *args, **kwargs):
         self.LOGIN_URL = "http://167.71.65.114/api/v1/login"
         self.C2B_URL = "http://167.71.65.114/api/v1/c2b"
         self.B2C_URL = "http://167.71.65.114/api/v1/b2c"
@@ -66,26 +66,28 @@ class Vodacash(object):
         result = json.loads(result)
         self.token = result["token"]
 
-    def c2b(self, customer_msisdn, amount):
+    def c2b(self, customer_msisdn, amount, myref, *args, **kwargs):
         result = requests.post(
             self.C2B_URL,
             json={
                 "Amount": amount,
                 "CustomerMSISDN": customer_msisdn,
                 "Date": strdate(datetime.utcnow()),
+                "thirdpartyref": myref,
                 "token": str(self.token),
             }
         ).content
         result = json.loads(result)
         return result
 
-    def b2c(self, customer_msisdn, amount):
+    def b2c(self, customer_msisdn, amount, myref, *args, **kwargs):
         result = requests.post(
             self.B2C_URL,
             json={
                 "Amount": amount,
                 "CustomerMSISDN": customer_msisdn,
                 "Date": strdate(datetime.utcnow()),
+                "thirdpartyref": myref,
                 "token": str(self.token),
             }
         ).content
