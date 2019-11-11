@@ -82,7 +82,7 @@ class Vodacash(object):
                 "callback_url": str(self.C2B_CB_URL),
             }
         ).content
-        print(result)
+        # print(result)
         result = json.loads(result)
         return result
 
@@ -99,6 +99,6 @@ class Vodacash(object):
                 "callback_url": str(self.B2C_CB_URL),
             }
         ).content
-        print(result)
+        # print(result)
         result = json.loads(result)
         return result
