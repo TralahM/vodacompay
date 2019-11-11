@@ -66,7 +66,8 @@ class Vodacash(object):
         result = json.loads(result)
         self.token = result["token"]
 
-    def c2b(self, customer_msisdn, amount, myref, *args, **kwargs):
+    def c2b(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
+        self.authenticate()
         result = requests.post(
             self.C2B_URL,
             json={
@@ -80,7 +81,8 @@ class Vodacash(object):
         result = json.loads(result)
         return result
 
-    def b2c(self, customer_msisdn, amount, myref, *args, **kwargs):
+    def b2c(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
+        self.authenticate()
         result = requests.post(
             self.B2C_URL,
             json={
