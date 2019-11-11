@@ -48,7 +48,7 @@ def parse_async_result(content):
 
 
 class Vodacash(object):
-    def __init__(self, username, password, callback_url, *args, **kwargs):
+    def __init__(self, username, password,  *args, **kwargs):
         self.LOGIN_URL = "http://167.71.65.114/api/v1/login"
         self.C2B_URL = "http://167.71.65.114/api/v1/c2b"
         self.C2B_CB_URL = "http://167.71.65.114/api/v1/c2b_callback"
@@ -60,7 +60,6 @@ class Vodacash(object):
         self.shortcode = None
         self.serviceprovidercode = None
         self.callback_channel = 2
-        self.callback_url = callback_url
         self.authenticate()
 
     def authenticate(self):
