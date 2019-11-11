@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 import requests
 import json
 from lxml import etree
@@ -50,7 +51,9 @@ class Vodacash(object):
     def __init__(self, username, password, callback_url, *args, **kwargs):
         self.LOGIN_URL = "http://167.71.65.114/api/v1/login"
         self.C2B_URL = "http://167.71.65.114/api/v1/c2b"
+        self.C2B_CB_URL = "http://167.71.65.114/api/v1/c2b_callback"
         self.B2C_URL = "http://167.71.65.114/api/v1/b2c"
+        self.B2C_CB_URL = "http://167.71.65.114/api/v1/b2c_callback"
         self.Username = username
         self.Password = password
         self.token = None
@@ -61,14 +64,15 @@ class Vodacash(object):
         self.authenticate()
 
     def authenticate(self):
-        result = requests.post(
-            self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password}).content
-        result = json.loads(result)
+        conn = requests.post(
+            self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password})
+        result = json.loads(conn.content)
         self.token = result["token"]
+        conn.connection.close()
 
     def c2b(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
         self.authenticate()
-        result = requests.post(
+        conn = requests.post(
             self.C2B_URL,
             json={
                 "Amount": amount,
@@ -76,14 +80,16 @@ class Vodacash(object):
                 "Date": strdate(datetime.utcnow()),
                 "thirdpartyref": myref,
                 "token": str(self.token),
+                "callback_url": str(self.C2B_CB_URL),
             }
-        ).content
-        result = json.loads(result)
+        )
+        result = json.loads(conn.content)
         return result
+        conn.connection.close()
 
     def b2c(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
         self.authenticate()
-        result = requests.post(
+        conn = requests.post(
             self.B2C_URL,
             json={
                 "Amount": amount,
@@ -91,7 +97,9 @@ class Vodacash(object):
                 "Date": strdate(datetime.utcnow()),
                 "thirdpartyref": myref,
                 "token": str(self.token),
+                "callback_url": str(self.B2C_CB_URL),
             }
-        ).content
-        result = json.loads(result)
+        )
+        result = json.loads(conn.content)
         return result
+        conn.connection.close()
