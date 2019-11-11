@@ -69,9 +69,9 @@ class Vodacash(object):
         self.token = result["token"]
         conn.connection.close()
 
-    def c2b(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
+    def c2b(self, customer_msisdn, amount, myref='R'+strdate(datetime.now()), *args, **kwargs):
         self.authenticate()
-        conn = requests.post(
+        result = requests.post(
             self.C2B_URL,
             json={
                 "Amount": amount,
@@ -81,14 +81,14 @@ class Vodacash(object):
                 "token": str(self.token),
                 "callback_url": str(self.C2B_CB_URL),
             }
-        )
-        result = json.loads(conn.content)
+        ).content
+        print(result)
+        result = json.loads(result)
         return result
-        conn.connection.close()
 
-    def b2c(self, customer_msisdn, amount, myref='R'+strdate(datetime.now), *args, **kwargs):
+    def b2c(self, customer_msisdn, amount, myref='R'+strdate(datetime.now()), *args, **kwargs):
         self.authenticate()
-        conn = requests.post(
+        result = requests.post(
             self.B2C_URL,
             json={
                 "Amount": amount,
@@ -99,6 +99,6 @@ class Vodacash(object):
                 "callback_url": str(self.B2C_CB_URL),
             }
         )
-        result = json.loads(conn.content)
+        print(result)
+        result = json.loads(result)
         return result
-        conn.connection.close()
