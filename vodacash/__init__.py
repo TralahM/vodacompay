@@ -98,7 +98,7 @@ class Vodacash(object):
                 "token": str(self.token),
                 "callback_url": str(self.B2C_CB_URL),
             }
-        )
+        ).content
         print(result)
         result = json.loads(result)
         return result
