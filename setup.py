@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vodacompay",
-    version="2.3",
+    version="2.4",
     author="Tralah M Brian",
     author_email="briantralah@gmail.com",
     description="A library to interface with vodacom's Payment System using an intermediary server.",
@@ -19,7 +19,14 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'certifi', 'chardet', 'future', 'idna', 'requests',
-        'six', 'urllib3', 'pytest', 'lxml'
+        "certifi",
+        "chardet",
+        "future",
+        "idna",
+        "requests",
+        "six",
+        "urllib3",
+        "pytest",
+        "lxml",
     ],
 )
