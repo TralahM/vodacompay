@@ -48,7 +48,16 @@ def parse_async_result(content):
 
 
 class Vodacash(object):
-    def __init__(self, username, password, server_ip="167.71.65.114", *args, **kwargs):
+    def __init__(
+        self,
+        username,
+        password,
+        server_ip="167.71.65.114",
+        b2c_code="15058",
+        c2b_code="8337",
+        *args,
+        **kwargs,
+    ):
         self.LOGIN_URL = f"http://{server_ip}/api/v1/login"
         self.C2B_URL = f"http://{server_ip}/api/v1/c2b"
         self.C2B_CB_URL = f"http://{server_ip}/api/v1/c2b_callback"
@@ -57,11 +66,9 @@ class Vodacash(object):
         self.Username = username
         self.Password = password
         self.token = None
-        self.shortcode = None
-        self.serviceprovidercode = None
         self.callback_channel = 2
-        self.C2B_Number = None
-        self.B2C_Number = None
+        self.C2B_Number = c2b_code
+        self.B2C_Number = b2c_code
         self.authenticate()
 
     def authenticate(self):
@@ -82,6 +89,7 @@ class Vodacash(object):
                 "CustomerMSISDN": customer_msisdn,
                 "Date": strdate(datetime.utcnow()),
                 "thirdpartyref": "R" + strdate(datetime.now()),
+                "serviceprovidercode": self.C2B_Number,
                 "token": str(self.token),
                 "callback_url": str(self.C2B_CB_URL),
             },
@@ -99,6 +107,7 @@ class Vodacash(object):
                 "CustomerMSISDN": customer_msisdn,
                 "Date": strdate(datetime.utcnow()),
                 "thirdpartyref": "R" + strdate(datetime.now()),
+                "shortcode": self.B2C_Number,
                 "token": str(self.token),
                 "callback_url": str(self.B2C_CB_URL),
             },
