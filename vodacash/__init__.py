@@ -1,5 +1,4 @@
 from datetime import datetime
-from time import sleep
 import requests
 import json
 from lxml import etree
@@ -55,6 +54,11 @@ class Vodacash(object):
         server_ip="167.71.65.114",
         b2c_code="15058",
         c2b_code="8337",
+        c2b_command_id="InitTrans_oneForallC2B",
+        b2c_command_id="InitTrans_one4allb2c",
+        callback_channel="2",
+        serviceprovidername="ONE4ALL",
+        language="EN",
         *args,
         **kwargs,
     ):
@@ -65,10 +69,13 @@ class Vodacash(object):
         self.B2C_CB_URL = f"http://{server_ip}/api/v1/b2c_callback"
         self.Username = username
         self.Password = password
+        self.C2B_CommandID = c2b_command_id
+        self.ServiceProviderName = serviceprovidername
+        self.B2C_CommandID = b2c_command_id
         self.token = None
-        self.callback_channel = 2
         self.C2B_Number = c2b_code
         self.B2C_Number = b2c_code
+        self.Callback_Channel = callback_channel
         self.authenticate()
 
     def authenticate(self):
@@ -80,7 +87,16 @@ class Vodacash(object):
         self.token = result["token"]
         conn.connection.close()
 
-    def c2b(self, customer_msisdn, amount, *args, **kwargs):
+    def c2b(
+        self,
+        customer_msisdn,
+        amount,
+        currency="CDF",
+        initials="BMB",
+        surname="BetModenge",
+        *args,
+        **kwargs,
+    ):
         self.authenticate()
         result = requests.post(
             self.C2B_URL,
@@ -93,13 +109,19 @@ class Vodacash(object):
                 "serviceprovidercode": self.C2B_Number,
                 "token": str(self.token),
                 "callback_url": str(self.C2B_CB_URL),
+                "command_id": self.C2B_CommandID,
+                "callback_channel": self.Callback_Channel,
+                "currency": currency,
+                "language": self.Language,
+                "initials": initials,
+                "surname": surname,
             },
         ).content
         # print(result)
         result = json.loads(result)
         return result
 
-    def b2c(self, customer_msisdn, amount, *args, **kwargs):
+    def b2c(self, customer_msisdn, amount, currency="CDF", *args, **kwargs):
         self.authenticate()
         result = requests.post(
             self.B2C_URL,
@@ -111,6 +133,11 @@ class Vodacash(object):
                 "shortcode": self.B2C_Number,
                 "token": str(self.token),
                 "callback_url": str(self.B2C_CB_URL),
+                "command_id": self.B2C_CommandID,
+                "callback_channel": self.Callback_Channel,
+                "serviceprovidername": self.ServiceProviderName,
+                "currency": currency,
+                "language": self.Language,
             },
         ).content
         # print(result)
