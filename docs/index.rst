@@ -11,6 +11,11 @@ Welcome to VodaComPay's documentation!
    :caption: Contents:
 
 
+.. automodule:: vodacash
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Indices and tables
 ==================
