@@ -1,35 +1,62 @@
 
 [![Build Status](https://travis-ci.com/TralahM/vodacompay.svg?branch=master)](https://travis-ci.com/TralahM/vodacompay)
-[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
+[![Build status](https://ci.appveyor.com/api/projects/status/yvvmq5hyf7hj743a?svg=true)](https://ci.appveyor.com/project/TralahM/vodacompay)
+[![Build status](https://ci.appveyor.com/api/projects/status/yvvmq5hyf7hj743a/branch/master?svg=true)](https://ci.appveyor.com/project/TralahM/vodacompay/branch/master)
+[![Documentation Status](https://readthedocs.org/projects/vodacompay/badge/?version=latest)](https://vodacompay.readthedocs.io/en/latest/?badge=latest)
+[![License: GPLV2](https://img.shields.io/badge/License-GPLV2-green.svg)](https://opensource.org/licenses/GPLV2)
 [![Organization](https://img.shields.io/badge/Org-TralahTek-blue.svg)](https://github.com/TralahTek)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![HitCount](http://hits.dwyl.io/TralahM/vodacompay.svg)](http://dwyl.io/TralahM/vodacompay)
-[![Inline Docs](http://inch-ci.org/github/TralahM/vodacompay.svg?branch=master)](http://inch-ci.org/github/TralahM/vodacompay)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/TralahM/pull/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://gitHub.com/TralahM/vodacompay/pull/)
-[![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/TralahM/vodacompay).
+[![Views](http://hits.dwyl.io/TralahM/vodacompay.svg)](http://dwyl.io/TralahM/vodacompay)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](https://github.com/TralahM/vodacompay/pull/)
+[![GitHub pull-requests](https://img.shields.io/badge/Issues-pr-red.svg?style=flat-square)](https://github.com/TralahM/vodacompay/pull/)
+[![Language](https://img.shields.io/badge/Language-python-3572A5.svg)](https://github.com/TralahM)
 
 # vodacompay.
 
 
+[![TralahTek](https://img.shields.io/badge/Organization-TralahTek-black.svg?style=for-the-badge)](https://github.com/TralahTek)
 [![TralahM](https://img.shields.io/badge/Engineer-TralahM-blue.svg?style=for-the-badge)](https://github.com/TralahM)
 [![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
 
-### Setup and Installation
+# Documentation
 
-```Bash
-git clone https://github.com/TralahM/vodacompay.git
-cd vodacompay
+[![Documentation](https://img.shields.io/badge/Docs-vodacompay-blue.svg?style=for-the-badge)](https://github.com/TralahM/vodacompay)
+
+# How to Install
+```bash
+# In terminal do:
 ```
 
-## Scripts Herein.
+## Building from Source for Developers
 
-* [setup.py](https://github.com/TralahM/vodacompay/blob/master/setup.py)
+```console
+$ git clone https://github.com/TralahM/vodacompay.git
+$ cd vodacompay
+```
 
-* [vodacash](https://github.com/TralahM/vodacompay/blob/master/vodacash)
+# Contributing
+[See the Contributing File](CONTRIBUTING.rst)
 
-# Contributors.
 
-* [TralahTek](https://github.com/TralahTek)
-* [TralahM](https://github.com/TralahM)
+[See the Pull Request File](PULL_REQUEST_TEMPLATE.md)
+
+
+# Support
+
+# LICENCE
+
+[Read the license here](LICENSE)
+
+
+# Self-Promotion
+
+[![TralahM](https://img.shields.io/badge/Twitter-TralahM-blue.svg?style=for-the-badge)](https://twitter.com/TralahM)
+[![TralahM](https://img.shields.io/badge/Github-TralahM-black.svg?style=for-the-badge)](https://github.com/TralahM)
+[![TralahM](https://img.shields.io/badge/Kaggle-TralahM-purple.svg?style=for-the-badge)](https://kaggle.com/TralahM)
+[![TralahM](https://img.shields.io/badge/LinkedIn-TralahM-red.svg?style=for-the-badge)](https://linkedin.com/in/TralahM)
+
+
+[![Blog](https://img.shields.io/badge/Blog-tralahm.tralahtek.com-blue.svg?style=for-the-badge)](https://tralahm.tralahtek.com)
+
+[![TralahTek](https://img.shields.io/badge/Organization-TralahTek-cyan.svg?style=for-the-badge)](https://tralahtek.com)
+
+
