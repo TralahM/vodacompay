@@ -31,11 +31,22 @@ B2CCallbackResponse = """
 
 
 def strdate(dt):
+    """
+    Generates a str of 12 digits from a datetime object `dt`
+    """
     ax = str(dt)
     return ax.split(".")[0].replace("-", "").replace(" ", "").replace(":", "")
 
 
 def parse_async_result(content):
+    """
+    Takes XML string `content` and parses out the fields then returns a  JSON/DICT
+    python dictionary with the data Items.
+
+    .. note::
+        FOR INTERNAL USE ONLY
+
+    """
     root = etree.from_string(content)
     js_out = {}
     keys = []
@@ -47,6 +58,43 @@ def parse_async_result(content):
 
 
 class Vodacash(object):
+    """
+    Create A Vodacash Object to be Used throughout your API Interaction
+
+    *Arguments*
+
+        username:
+            Username as provided by Vodacash Team
+
+        password:
+            Password as provided by Vodacash Team
+
+        server_ip:
+            Your whitelisted server IP,domain name where the intermediary server is deployed.
+
+        b2c_code:
+            Your B2C code as provided by Vodacom default="15058",
+
+        c2b_code:
+            Your C2B code as provided by Vodacom default="8337",
+
+        c2b_command_id:
+            Your C2B CommandID as provided default="InitTrans_oneForallC2B",
+
+        b2c_command_id:
+            Your B2C CommandID as provided default="InitTrans_one4allb2c",
+
+        callback_channel:
+            Your callback channel default="2" for http url
+
+        serviceprovidername:
+            Your Provided ServiceProviderName default="ONE4ALL",
+
+        language:
+            Your chosen language default="EN",
+
+    """
+
     def __init__(
         self,
         username,
@@ -80,6 +128,10 @@ class Vodacash(object):
         self.authenticate()
 
     def authenticate(self):
+        """
+        Obtains and sets an authentication token by authenticating against the
+        Vodacom UATG payment gateway.
+        """
         conn = requests.post(
             self.LOGIN_URL, json={
                 "Username": self.Username, "Password": self.Password}
@@ -98,6 +150,48 @@ class Vodacash(object):
         *args,
         **kwargs,
     ):
+        """
+        *Required Arguments*
+
+            customer_msisdn:
+                Customer PhoneNumber
+            amount:
+                Amount to transact
+
+        *Optional arguments*
+
+            currency:
+                The currency code default CDF
+            initials:
+                The Business Initials default BMB
+            surname:
+                The Business Surname default BetModenge
+
+        And Returns a dict object like:
+
+        .. code-block:: json
+
+                {
+                    "Amount": "100",
+                    "CallBackChannel": "2",
+                    "CallBackDestination": "http://XX.XXX.XX.XX/api/v1/c2b_callback",
+                    "CommandId": "InitTrans_oneForallC2B",
+                    "Currency": "CDF",
+                    "CustomerMSISDN": "243800000000",
+                    "Date": "20200727182755",
+                    "Initials": "TMB",
+                    "InsightReference": "AB7158AA732221F8E054002128FBA42E",
+                    "Language": "EN",
+                    "ResponseCode": "0",
+                    "ServiceProviderCode": "8337",
+                    "Surname": "Surname",
+                    "ThirdPartyReference": "R20200727212755",
+                    "code": "3",
+                    "description": "Processed",
+                    "detail": "Processed",
+                    "event_id": "80049"
+                }
+        """
         self.authenticate()
         result = requests.post(
             self.C2B_URL,
@@ -123,6 +217,41 @@ class Vodacash(object):
         return result
 
     def b2c(self, customer_msisdn, amount, currency="CDF", *args, **kwargs):
+        """
+        Takes:
+            customer_msisdn:
+                Customer PhoneNumber
+            amount:
+                Amount to transact
+        Optional arguments:
+            currency:
+                The currency code default CDF
+
+        And Returns a dict object like:
+
+        .. code-block:: json
+
+                {
+                    "Amount": "100",
+                    "CallBackChannel": "2",
+                    "CallBackDestination": "http://XX.XX.XX.XX/api/v1/b2c_callback",
+                    "CommandID": "InitTrans_one4allb2c",
+                    "Currency": "CDF",
+                    "CustomerMSISDN": "243800000000",
+                    "Insight_txid": "ilu6sebgpdrj68t2d9vqrd7c0gceelgs",
+                    "Language": "EN",
+                    "ResponseCode": "0",
+                    "ServiceProviderName": "ONE4ALL",
+                    "Shortcode": "15058",
+                    "ThirdPartyReference": "R20200727212753",
+                    "TransactionDateTime": "20200727182753",
+                    "code": "3",
+                    "description": "Processed",
+                    "detail": "Processed",
+                    "event_id": "12001"
+                }
+
+        """
         self.authenticate()
         result = requests.post(
             self.B2C_URL,
