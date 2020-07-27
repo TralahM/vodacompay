@@ -1,0 +1,19 @@
+{
+    "Amount": "100",
+    "CallBackChannel": "2",
+    "CallBackDestination": "http://64.225.75.98/api/v1/b2c_callback",
+    "CommandID": "InitTrans_one4allb2c",
+    "Currency": "CDF",
+    "CustomerMSISDN": "243815649058",
+    "Insight_txid": "ilu6sebgpdrj68t2d9vqrd7c0gceelgs",
+    "Language": "EN",
+    "ResponseCode": "0",
+    "ServiceProviderName": "ONE4ALL",
+    "Shortcode": "15058",
+    "ThirdPartyReference": "R20200727212753",
+    "TransactionDateTime": "20200727182753",
+    "code": "3",
+    "description": "Processed",
+    "detail": "Processed",
+    "event_id": "12001"
+}

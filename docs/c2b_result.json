@@ -1,0 +1,20 @@
+{
+    "Amount": "100",
+    "CallBackChannel": "2",
+    "CallBackDestination": "http://64.225.75.98/api/v1/c2b_callback",
+    "CommandId": "InitTrans_oneForallC2B",
+    "Currency": "CDF",
+    "CustomerMSISDN": "243815649058",
+    "Date": "20200727182755",
+    "Initials": "BMB",
+    "InsightReference": "AB7158AA732221F8E054002128FBA42E",
+    "Language": "EN",
+    "ResponseCode": "0",
+    "ServiceProviderCode": "8337",
+    "Surname": "BetModenge",
+    "ThirdPartyReference": "R20200727212755",
+    "code": "3",
+    "description": "Processed",
+    "detail": "Processed",
+    "event_id": "80049"
+}
