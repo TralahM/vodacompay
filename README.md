@@ -19,11 +19,12 @@
 
 # Documentation
 
-[![Documentation](https://img.shields.io/badge/Docs-vodacompay-blue.svg?style=for-the-badge)](https://github.com/TralahM/vodacompay)
+[![Documentation](https://img.shields.io/badge/Docs-vodacompay-blue.svg?style=for-the-badge)](https://vodacompayreadthedocs.io/en/latest)
 
 # How to Install
-```bash
+```console
 # In terminal do:
+$ pip install vodacompay
 ```
 
 ## Building from Source for Developers
@@ -31,6 +32,7 @@
 ```console
 $ git clone https://github.com/TralahM/vodacompay.git
 $ cd vodacompay
+$ python setup.py install
 ```
 
 # Contributing
