@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vodacompay",
-    version="2.8",
+    version="2.9",
     author="Tralah M Brian",
     author_email="briantralah@gmail.com",
     description="A library to interface with vodacom's Payment System using an intermediary server.",

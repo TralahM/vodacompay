@@ -73,6 +73,7 @@ class Vodacash(object):
         self.ServiceProviderName = serviceprovidername
         self.B2C_CommandID = b2c_command_id
         self.token = None
+        self.Language = language
         self.C2B_Number = c2b_code
         self.B2C_Number = b2c_code
         self.Callback_Channel = callback_channel
