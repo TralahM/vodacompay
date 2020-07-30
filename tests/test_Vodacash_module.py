@@ -31,7 +31,7 @@ def test_vodacash_obtain_token(Vodacash_obj, printer):
 
 def test_vodacash_c2b_transaction(Vodacash_obj, printer):
     result = Vodacash_obj.c2b(
-        customer_msisdn="243815649058",
+        customer_msisdn="243814447581",
         amount="100",
         currency="CDF",
         initials="BMB",
@@ -44,7 +44,7 @@ def test_vodacash_c2b_transaction(Vodacash_obj, printer):
 
 def test_vodacash_b2c_transaction(Vodacash_obj, printer):
     result = Vodacash_obj.b2c(
-        customer_msisdn="243815649058", amount="100", currency="CDF",
+        customer_msisdn="243814447581", amount="100", currency="CDF",
     )
     printer(result)
     logger.debug(result)
