@@ -136,9 +136,12 @@ class Vodacash(object):
             self.LOGIN_URL, json={
                 "Username": self.Username, "Password": self.Password}
         )
-        result = json.loads(conn.content)
-        self.token = result["token"]
-        conn.connection.close()
+        try:
+            result = json.loads(conn.content)
+            self.token = result["token"]
+            conn.connection.close()
+        except json.decoder.JSONDecodeError:
+            conn.connection.close()
 
     def c2b(
         self,
@@ -212,9 +215,11 @@ class Vodacash(object):
                 "surname": surname,
             },
         ).content
-        # print(result)
-        result = json.loads(result)
-        return result
+        try:
+            result = json.loads(result)
+            return result
+        except json.decoder.JSONDecodeError:
+            return {"error": "Payment Service Unavailable,try again later"}
 
     def b2c(self, customer_msisdn, amount, currency="CDF", *args, **kwargs):
         """
@@ -271,5 +276,8 @@ class Vodacash(object):
             },
         ).content
         # print(result)
-        result = json.loads(result)
-        return result
+        try:
+            result = json.loads(result)
+            return result
+        except json.decoder.JSONDecodeError:
+            return {"error": "Payment Service Unavailable,try again later"}
