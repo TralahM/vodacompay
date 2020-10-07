@@ -162,6 +162,7 @@ class Vodacash(object):
                 Amount to transact
 
         *Optional arguments*
+            client_callback_url: URL Where to receive json callback data.
 
             currency:
                 The currency code default CDF
@@ -207,6 +208,7 @@ class Vodacash(object):
                 "serviceprovidercode": self.C2B_Number,
                 "token": str(self.token),
                 "callback_url": str(self.C2B_CB_URL),
+                "client_callback_url": kwargs.get("client_callback_url"),
                 "command_id": self.C2B_CommandID,
                 "callback_channel": self.Callback_Channel,
                 "currency": currency,
@@ -229,6 +231,7 @@ class Vodacash(object):
             amount:
                 Amount to transact
         Optional arguments:
+            client_callback_url: URL Where to receive json callback data.
             currency:
                 The currency code default CDF
 
@@ -268,6 +271,7 @@ class Vodacash(object):
                 "shortcode": self.B2C_Number,
                 "token": str(self.token),
                 "callback_url": str(self.B2C_CB_URL),
+                "client_callback_url": kwargs.get("client_callback_url"),
                 "command_id": self.B2C_CommandID,
                 "callback_channel": self.Callback_Channel,
                 "serviceprovidername": self.ServiceProviderName,

@@ -11,6 +11,7 @@ def Vodacash_obj():
         username="thirdpartyc2bw",
         password="thirdpartyc2bw",
         server_ip="64.225.75.98",
+        # server_ip="127.0.0.1",
         b2c_code="15058",
         c2b_code="8337",
         c2b_command_id="InitTrans_oneForallC2B",
@@ -44,7 +45,9 @@ def test_vodacash_c2b_transaction(Vodacash_obj, printer):
 
 def test_vodacash_b2c_transaction(Vodacash_obj, printer):
     result = Vodacash_obj.b2c(
-        customer_msisdn="243814447581", amount="700", currency="CDF",
+        customer_msisdn="243814447581",
+        amount="700",
+        currency="CDF",
     )
     printer(result)
     logger.debug(result)
