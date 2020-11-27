@@ -108,3 +108,4 @@ env/
 .*~
 tmp/b2c_result.json tmp/c2b_result.json tmp/verbose_test.py
 tmp/*
+tests/*
