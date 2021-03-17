@@ -1,6 +1,8 @@
-from datetime import datetime
-import requests
+"""Vodacash Module."""
 import json
+from datetime import datetime
+
+import requests
 from lxml import etree
 
 C2BCallbackResponse = """
@@ -31,15 +33,14 @@ B2CCallbackResponse = """
 
 
 def strdate(dt):
-    """
-    Generates a str of 12 digits from a datetime object `dt`
-    """
+    """Generate a str of 12 digits from a datetime object `dt`."""
     ax = str(dt)
     return ax.split(".")[0].replace("-", "").replace(" ", "").replace(":", "")
 
 
 def parse_async_result(content):
-    """
+    """Parse result.
+
     Takes XML string `content` and parses out the fields then returns a  JSON/DICT
     python dictionary with the data Items.
 
@@ -58,8 +59,7 @@ def parse_async_result(content):
 
 
 class Vodacash(object):
-    """
-    Create A Vodacash Object to be Used throughout your API Interaction
+    """Create A Vodacash Object to be Used throughout your API Interaction.
 
     *Arguments*
 
@@ -110,6 +110,7 @@ class Vodacash(object):
         *args,
         **kwargs,
     ):
+        """Initialize object."""
         self.LOGIN_URL = f"http://{server_ip}/api/v1/login"
         self.C2B_URL = f"http://{server_ip}/api/v1/c2b"
         self.C2B_CB_URL = f"http://{server_ip}/api/v1/c2b_callback"
@@ -128,7 +129,8 @@ class Vodacash(object):
         self.authenticate()
 
     def authenticate(self):
-        """
+        """Authenticate.
+
         Obtains and sets an authentication token by authenticating against the
         Vodacom UATG payment gateway.
         """
@@ -153,7 +155,8 @@ class Vodacash(object):
         *args,
         **kwargs,
     ):
-        """
+        """Handle c2b.
+
         *Required Arguments*
 
             customer_msisdn:
@@ -224,7 +227,8 @@ class Vodacash(object):
             return {"error": "Payment Service Unavailable,try again later"}
 
     def b2c(self, customer_msisdn, amount, currency="CDF", *args, **kwargs):
-        """
+        """Handle b2c.
+
         Takes:
             customer_msisdn:
                 Customer PhoneNumber
@@ -279,9 +283,10 @@ class Vodacash(object):
                 "language": self.Language,
             },
         ).content
-        # print(result)
+        print(result)
         try:
             result = json.loads(result)
+            # print(result)
             return result
         except json.decoder.JSONDecodeError:
             return {"error": "Payment Service Unavailable,try again later"}
