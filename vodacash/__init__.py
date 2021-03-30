@@ -99,7 +99,7 @@ class Vodacash(object):
         self,
         username,
         password,
-        server_ip="167.71.65.114",
+        server_ip="",
         b2c_code="15058",
         c2b_code="8337",
         c2b_command_id="InitTrans_oneForallC2B",
@@ -220,6 +220,7 @@ class Vodacash(object):
                 "surname": surname,
             },
         ).content
+        print(result)
         try:
             result = json.loads(result)
             return result
