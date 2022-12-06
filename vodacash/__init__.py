@@ -135,8 +135,7 @@ class Vodacash(object):
         Vodacom UATG payment gateway.
         """
         conn = requests.post(
-            self.LOGIN_URL, json={
-                "Username": self.Username, "Password": self.Password}
+            self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password}
         )
         try:
             result = json.loads(conn.content)
@@ -225,7 +224,7 @@ class Vodacash(object):
             result = json.loads(result)
             return result
         except json.decoder.JSONDecodeError:
-            return {"error": "Payment Service Unavailable,try again later"}
+            return {"error": f"Payment Service Unavailable,try again later: {result}"}
 
     def b2c(self, customer_msisdn, amount, currency="CDF", *args, **kwargs):
         """Handle b2c.
@@ -290,4 +289,4 @@ class Vodacash(object):
             # print(result)
             return result
         except json.decoder.JSONDecodeError:
-            return {"error": "Payment Service Unavailable,try again later"}
+            return {"error": f"Payment Service Unavailable,try again later: {result}"}
