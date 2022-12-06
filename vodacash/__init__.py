@@ -135,7 +135,8 @@ class Vodacash(object):
         Vodacom UATG payment gateway.
         """
         conn = requests.post(
-            self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password}
+            self.LOGIN_URL, json={
+                "Username": self.Username, "Password": self.Password}
         )
         try:
             result = json.loads(conn.content)
@@ -199,25 +200,27 @@ class Vodacash(object):
                 }
         """
         self.authenticate()
+        jsond = {
+            "Amount": amount,
+            "CustomerMSISDN": customer_msisdn,
+            "Date": strdate(datetime.utcnow()),
+            "thirdpartyref": "R" + strdate(datetime.now()),
+            # "thirdpartyref": "BMB_UAT",
+            "serviceprovidercode": self.C2B_Number,
+            "token": str(self.token),
+            "callback_url": str(self.C2B_CB_URL),
+            "client_callback_url": kwargs.get("client_callback_url"),
+            "command_id": self.C2B_CommandID,
+            "callback_channel": self.Callback_Channel,
+            "currency": currency,
+            "language": self.Language,
+            "initials": initials,
+            "surname": surname,
+        }
+        print(jsond)
         result = requests.post(
             self.C2B_URL,
-            json={
-                "Amount": amount,
-                "CustomerMSISDN": customer_msisdn,
-                "Date": strdate(datetime.utcnow()),
-                "thirdpartyref": "R" + strdate(datetime.now()),
-                # "thirdpartyref": "BMB_UAT",
-                "serviceprovidercode": self.C2B_Number,
-                "token": str(self.token),
-                "callback_url": str(self.C2B_CB_URL),
-                "client_callback_url": kwargs.get("client_callback_url"),
-                "command_id": self.C2B_CommandID,
-                "callback_channel": self.Callback_Channel,
-                "currency": currency,
-                "language": self.Language,
-                "initials": initials,
-                "surname": surname,
-            },
+            json=jsond,
         ).content
         print(result)
         try:
@@ -265,23 +268,25 @@ class Vodacash(object):
 
         """
         self.authenticate()
+        jsond = {
+            "Amount": amount,
+            "CustomerMSISDN": customer_msisdn,
+            "Date": strdate(datetime.utcnow()),
+            "thirdpartyref": "R" + strdate(datetime.now()),
+            "shortcode": self.B2C_Number,
+            "token": str(self.token),
+            "callback_url": str(self.B2C_CB_URL),
+            "client_callback_url": kwargs.get("client_callback_url"),
+            "command_id": self.B2C_CommandID,
+            "callback_channel": self.Callback_Channel,
+            "serviceprovidername": self.ServiceProviderName,
+            "currency": currency,
+            "language": self.Language,
+        }
+        print(jsond)
         result = requests.post(
             self.B2C_URL,
-            json={
-                "Amount": amount,
-                "CustomerMSISDN": customer_msisdn,
-                "Date": strdate(datetime.utcnow()),
-                "thirdpartyref": "R" + strdate(datetime.now()),
-                "shortcode": self.B2C_Number,
-                "token": str(self.token),
-                "callback_url": str(self.B2C_CB_URL),
-                "client_callback_url": kwargs.get("client_callback_url"),
-                "command_id": self.B2C_CommandID,
-                "callback_channel": self.Callback_Channel,
-                "serviceprovidername": self.ServiceProviderName,
-                "currency": currency,
-                "language": self.Language,
-            },
+            json=jsond,
         ).content
         print(result)
         try:
