@@ -111,11 +111,11 @@ class Vodacash(object):
         **kwargs,
     ):
         """Initialize object."""
-        self.LOGIN_URL = f"http://{server_ip}/api/v1/login"
-        self.C2B_URL = f"http://{server_ip}/api/v1/c2b"
-        self.C2B_CB_URL = f"http://{server_ip}/api/v1/c2b_callback"
-        self.B2C_URL = f"http://{server_ip}/api/v1/b2c"
-        self.B2C_CB_URL = f"http://{server_ip}/api/v1/b2c_callback"
+        self.LOGIN_URL = f"https://{server_ip}/api/v1/login"
+        self.C2B_URL = f"https://{server_ip}/api/v1/c2b"
+        self.C2B_CB_URL = f"https://{server_ip}/api/v1/c2b_callback"
+        self.B2C_URL = f"https://{server_ip}/api/v1/b2c"
+        self.B2C_CB_URL = f"https://{server_ip}/api/v1/b2c_callback"
         self.Username = username
         self.Password = password
         self.C2B_CommandID = c2b_command_id
@@ -135,9 +135,9 @@ class Vodacash(object):
         Vodacom UATG payment gateway.
         """
         conn = requests.post(
-            self.LOGIN_URL, json={
-                "Username": self.Username, "Password": self.Password}
+            self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password}
         )
+        print(conn.content, conn.status_code)
         try:
             result = json.loads(conn.content)
             self.token = result["token"]
