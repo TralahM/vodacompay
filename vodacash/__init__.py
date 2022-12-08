@@ -137,7 +137,7 @@ class Vodacash(object):
         conn = requests.post(
             self.LOGIN_URL, json={"Username": self.Username, "Password": self.Password}
         )
-        print(conn.content, conn.status_code)
+        # print(conn.content, conn.status_code)
         try:
             result = json.loads(conn.content)
             self.token = result["token"]
@@ -217,12 +217,12 @@ class Vodacash(object):
             "initials": initials,
             "surname": surname,
         }
-        print(jsond)
+        # print(jsond)
         result = requests.post(
             self.C2B_URL,
             json=jsond,
         ).content
-        print(result)
+        # print(result)
         try:
             result = json.loads(result)
             return result
@@ -283,12 +283,12 @@ class Vodacash(object):
             "currency": currency,
             "language": self.Language,
         }
-        print(jsond)
+        # print(jsond)
         result = requests.post(
             self.B2C_URL,
             json=jsond,
         ).content
-        print(result)
+        # print(result)
         try:
             result = json.loads(result)
             # print(result)
